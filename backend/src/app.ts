@@ -45,10 +45,8 @@ app.set("queues", {
   sendScheduledMessages
 });
 
-const allowedOrigins = [
-  "https://newconnect.mss.tec.br",
-  "http://localhost:3000"
-];
+const allowedOrigins = [process.env.FRONTEND_URL];
+
 // Configuração do BullBoard
 if (String(process.env.BULL_BOARD).toLocaleLowerCase() === 'true' && process.env.REDIS_URI_ACK !== '') {
   BullBoard.setQueues(BullQueue.queues.map(queue => queue && queue.bull));
